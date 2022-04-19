@@ -35,7 +35,6 @@ const LoginForm = ({closeForm}) => {
                 url:'http://localhost:8000/api/token/',
                 data:values
             })
-
             localStorage.setItem("access_token", result.data["access"])
             localStorage.setItem("refresh_token", result.data["refresh"])
             dispatch(signin())

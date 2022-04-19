@@ -14,10 +14,15 @@ import MenuItem from '@mui/material/MenuItem';
 import SignedoutView from './SignedoutView';
 import { Tab } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { Autocomplete } from '@mui/material';
+import { TextField } from '@mui/material';
+import { RSS_VIEWS } from '../../utlity/Constants';
+import { InputAdornment } from '@mui/material';
+import { AccountCircle } from '@material-ui/icons';
+import SearchIcon from "@material-ui/icons/Search";
 
 
-
-const pages = [ {url:"browse",name:'Browse'},{url:"dynamic", name:"Dynamic RSS"}, {url:'about', name:"About"}];
+const pages = [ {url:"browse",name:'Browse'},{url:"dynamic", name:"Dynamic RSS"},{url:"explore", name:"Explore"}, {url:'about', name:"About"}];
 const MenuItems = () => {
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -37,6 +42,7 @@ const MenuItems = () => {
 
     return (
         <>
+          {/* Render for small devices*/}
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -73,6 +79,13 @@ const MenuItems = () => {
                     </MenuItem>
                 </Link>
               ))}
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={RSS_VIEWS}
+                sx={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} label="Movie" />}
+              />
             </Menu>
           </Box>
           <Typography
@@ -83,6 +96,7 @@ const MenuItems = () => {
           >
             RSS Feeder
           </Typography>
+          {/* Render for large screen */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
                 <Link to={`/${page.url}`} style={{textDecoration:"none"}}>
@@ -95,6 +109,22 @@ const MenuItems = () => {
                     </Button>
               </Link>
             ))}
+            <Autocomplete
+                id="combo-box-demo"
+                options={RSS_VIEWS}
+                variant="underlined"
+                sx={{flexGrow:"1",mx:"15%", height:"fit-content", mt:1, borderRadius:"10px",fontSize:"12px", backgroundColor:"white"}}
+                renderInput={(params) => <TextField {...params}  
+                InputProps={{ ...params.InputProps,
+                  endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton>
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>)
+                  }}
+                  />}
+              />
           </Box>
         </>
     )

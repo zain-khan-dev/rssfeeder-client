@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./Container/About";
 import Home from "./Container/Home";
 import Browse from "./Container/Browse";
+import Explore from "./Container/Explore"
+import Dynamic from "./Container/Dynamic.js"
+
+
 const App = () => {
   return (
     <div>
@@ -12,7 +16,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/browse" element = {<Browse />} />
           <Route path="/about" element={<About />} />
-        </Routes>
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/dynamic" element={<Dynamic />} />
+         </Routes>
       </Router>
     </div>
   )
